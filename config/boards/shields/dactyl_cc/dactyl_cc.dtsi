@@ -50,130 +50,106 @@ RC(3,0) RC(3,1) RC(3,2) RC(3,3) RC(3,4) RC(3,5)                   RC(3,11) RC(3,
 
     physical_layout0: physical_layout_0 {
         compatible = "zmk,physical-layout";
-        display-name = "Default Layout";
+        display-name = "Dactyl CC Layout";
         transform = <&default_transform>;
         kscan = <&kscan0>;
 
-        // Coordinate system notes:
-        // - Units are centiunits (100 = 1 key width ~19mm)
-        // - x increases left→right, y increases top→bottom
-        // - Column stagger (y offsets relative to col2 which is highest):
-        //     C0 (pinky outer) : +75
-        //     C1 (pinky)       : +50
-        //     C2 (ring)        :  +0  ← highest column
-        //     C3 (middle)      : +10
-        //     C4 (index)       : +30
-        //     C5 (index inner) : +60
-        // - Thumb cluster is offset below and right of main block,
-        //   rotated 10° clockwise (1000 centidegrees)
-        //   pivot point is top-left corner of cluster
+        // Units: 100 = 1 key width
+        // Column stagger offsets applied
+        // Split gap ≈ 300
+        // Thumb clusters rotated ±12°
 
         keys  //                     w    h      x     y    rot    rx    ry
 
-            // ── ROW 0 ──────────────────────────────────────────────────
-            // Left  RC(0,0)–RC(0,5)
-            = <&key_physical_attrs 100  100      0    75      0     0     0>  // L00 C0
-            , <&key_physical_attrs 100  100    100    50      0     0     0>  // L01 C1
-            , <&key_physical_attrs 100  100    200     0      0     0     0>  // L02 C2 ← highest
-            , <&key_physical_attrs 100  100    300    10      0     0     0>  // L03 C3
-            , <&key_physical_attrs 100  100    400    30      0     0     0>  // L04 C4
-            , <&key_physical_attrs 100  100    500    60      0     0     0>  // L05 C5
-            // Right RC(0,11)–RC(0,6) — mirrored stagger
-            , <&key_physical_attrs 100  100   1100    75      0     0     0>  // R00 C11
-            , <&key_physical_attrs 100  100   1000    50      0     0     0>  // R01 C10
-            , <&key_physical_attrs 100  100    900     0      0     0     0>  // R02 C9
-            , <&key_physical_attrs 100  100    800    10      0     0     0>  // R03 C8
-            , <&key_physical_attrs 100  100    700    30      0     0     0>  // R04 C7
-            , <&key_physical_attrs 100  100    600    60      0     0     0>  // R05 C6
+            // ───────── ROW 0 ─────────
+            = <&key_physical_attrs 100 100    0    75   0 0 0>
+            , <&key_physical_attrs 100 100  100    50   0 0 0>
+            , <&key_physical_attrs 100 100  200     0   0 0 0>
+            , <&key_physical_attrs 100 100  300    10   0 0 0>
+            , <&key_physical_attrs 100 100  400    30   0 0 0>
+            , <&key_physical_attrs 100 100  500    60   0 0 0>
 
-            // ── ROW 1 ──────────────────────────────────────────────────
-            // Left  RC(1,0)–RC(1,5)
-            , <&key_physical_attrs 100  100      0   175      0     0     0>  // L10
-            , <&key_physical_attrs 100  100    100   150      0     0     0>  // L11
-            , <&key_physical_attrs 100  100    200   100      0     0     0>  // L12
-            , <&key_physical_attrs 100  100    300   110      0     0     0>  // L13
-            , <&key_physical_attrs 100  100    400   130      0     0     0>  // L14
-            , <&key_physical_attrs 100  100    500   160      0     0     0>  // L15
-            // Right RC(1,11)–RC(1,6)
-            , <&key_physical_attrs 100  100   1100   175      0     0     0>  // R10
-            , <&key_physical_attrs 100  100   1000   150      0     0     0>  // R11
-            , <&key_physical_attrs 100  100    900   100      0     0     0>  // R12
-            , <&key_physical_attrs 100  100    800   110      0     0     0>  // R13
-            , <&key_physical_attrs 100  100    700   130      0     0     0>  // R14
-            , <&key_physical_attrs 100  100    600   160      0     0     0>  // R15
+            , <&key_physical_attrs 100 100  900    75   0 0 0>
+            , <&key_physical_attrs 100 100  800    50   0 0 0>
+            , <&key_physical_attrs 100 100  700     0   0 0 0>
+            , <&key_physical_attrs 100 100  600    10   0 0 0>
+            , <&key_physical_attrs 100 100  500    30   0 0 0>
+            , <&key_physical_attrs 100 100  400    60   0 0 0>
 
-            // ── ROW 2 (home row) ───────────────────────────────────────
-            // Left  RC(2,0)–RC(2,5)
-            , <&key_physical_attrs 100  100      0   275      0     0     0>  // L20
-            , <&key_physical_attrs 100  100    100   250      0     0     0>  // L21
-            , <&key_physical_attrs 100  100    200   200      0     0     0>  // L22
-            , <&key_physical_attrs 100  100    300   210      0     0     0>  // L23
-            , <&key_physical_attrs 100  100    400   230      0     0     0>  // L24
-            , <&key_physical_attrs 100  100    500   260      0     0     0>  // L25
-            // Right RC(2,11)–RC(2,6)
-            , <&key_physical_attrs 100  100   1100   275      0     0     0>  // R20
-            , <&key_physical_attrs 100  100   1000   250      0     0     0>  // R21
-            , <&key_physical_attrs 100  100    900   200      0     0     0>  // R22
-            , <&key_physical_attrs 100  100    800   210      0     0     0>  // R23
-            , <&key_physical_attrs 100  100    700   230      0     0     0>  // R24
-            , <&key_physical_attrs 100  100    600   260      0     0     0>  // R25
+            // ───────── ROW 1 ─────────
+            , <&key_physical_attrs 100 100    0   175   0 0 0>
+            , <&key_physical_attrs 100 100  100   150   0 0 0>
+            , <&key_physical_attrs 100 100  200   100   0 0 0>
+            , <&key_physical_attrs 100 100  300   110   0 0 0>
+            , <&key_physical_attrs 100 100  400   130   0 0 0>
+            , <&key_physical_attrs 100 100  500   160   0 0 0>
 
-            // ── ROW 3 ──────────────────────────────────────────────────
-            // Left  RC(3,0)–RC(3,5)
-            , <&key_physical_attrs 100  100      0   375      0     0     0>  // L30
-            , <&key_physical_attrs 100  100    100   350      0     0     0>  // L31
-            , <&key_physical_attrs 100  100    200   300      0     0     0>  // L32
-            , <&key_physical_attrs 100  100    300   310      0     0     0>  // L33
-            , <&key_physical_attrs 100  100    400   330      0     0     0>  // L34
-            , <&key_physical_attrs 100  100    500   360      0     0     0>  // L35
-            // Right RC(3,11)–RC(3,6)
-            , <&key_physical_attrs 100  100   1100   375      0     0     0>  // R30
-            , <&key_physical_attrs 100  100   1000   350      0     0     0>  // R31
-            , <&key_physical_attrs 100  100    900   300      0     0     0>  // R32
-            , <&key_physical_attrs 100  100    800   310      0     0     0>  // R33
-            , <&key_physical_attrs 100  100    700   330      0     0     0>  // R34
-            , <&key_physical_attrs 100  100    600   360      0     0     0>  // R35
+            , <&key_physical_attrs 100 100  900   175   0 0 0>
+            , <&key_physical_attrs 100 100  800   150   0 0 0>
+            , <&key_physical_attrs 100 100  700   100   0 0 0>
+            , <&key_physical_attrs 100 100  600   110   0 0 0>
+            , <&key_physical_attrs 100 100  500   130   0 0 0>
+            , <&key_physical_attrs 100 100  400   160   0 0 0>
 
-            // ── ROW 4 ──────────────────────────────────────────────────
-            // Left  RC(4,1)–RC(4,4) — no col0 or col5
-            , <&key_physical_attrs 100  100    100   450      0     0     0>  // L41
-            , <&key_physical_attrs 100  100    200   400      0     0     0>  // L42
-            , <&key_physical_attrs 100  100    300   410      0     0     0>  // L43
-            , <&key_physical_attrs 100  100    400   430      0     0     0>  // L44
-            // Right RC(4,10)–RC(4,7) — no col11 or col6
-            , <&key_physical_attrs 100  100   1000   450      0     0     0>  // R41
-            , <&key_physical_attrs 100  100    900   400      0     0     0>  // R42
-            , <&key_physical_attrs 100  100    800   410      0     0     0>  // R43
-            , <&key_physical_attrs 100  100    700   430      0     0     0>  // R44
+            // ───────── ROW 2 ─────────
+            , <&key_physical_attrs 100 100    0   275   0 0 0>
+            , <&key_physical_attrs 100 100  100   250   0 0 0>
+            , <&key_physical_attrs 100 100  200   200   0 0 0>
+            , <&key_physical_attrs 100 100  300   210   0 0 0>
+            , <&key_physical_attrs 100 100  400   230   0 0 0>
+            , <&key_physical_attrs 100 100  500   260   0 0 0>
 
-            // ── ROW 5 — THUMB CLUSTERS ─────────────────────────────────
-            //
-            // Left thumb cluster shape (rotated 10° CW):
-            //   top row  : [ RC5,4 ][ RC5,3 ][ RC5,2 ]   ← 3 normal keys
-            //   mid+bot  : [ RC5,5 ][ RC5,1 ]             ← 2 × 2u tall
-            //              (RC5,0 is inner-right normal below top row)
-            //
-            // Transform order for row 5:
-            //   RC(5,4) RC(5,5)  RC(5,11) RC(5,10)
-            //           RC(5,3)  RC(5,9)
-            //   RC(5,2) RC(5,1)  RC(5,0)  RC(5,6)  RC(5,7)  RC(5,8)
-            //
-            // Cluster anchor: x=320, y=520
-            // rot=1000 centidegrees (10°), pivot at anchor point
-            //
-            // Left thumb — top row (3 normal keys, inner→outer left)
-            , <&key_physical_attrs 100  100    520   520   1000   320   520>  // RC(5,4) top inner
-            , <&key_physical_attrs 100  200    420   550   1000   320   520>  // RC(5,5) 2u tall outer-left
-            , <&key_physical_attrs 100  200    820   550   (-1000)   980   520>  // RC(5,11) 2u tall right half
-            , <&key_physical_attrs 100  100    780   520   (-1000)   980   520>  // RC(5,10) top inner right
-            , <&key_physical_attrs 100  100    420   520   1000   320   520>  // RC(5,3) top mid-left
-            , <&key_physical_attrs 100  100    880   520   (-1000)   980   520>  // RC(5,9) top mid-right
-            , <&key_physical_attrs 100  100    320   520   1000   320   520>  // RC(5,2) top outer-left
-            , <&key_physical_attrs 100  200    320   550   1000   320   520>  // RC(5,1) 2u tall leftmost
-            , <&key_physical_attrs 100  100    520   550   1000   320   520>  // RC(5,0) normal below inner
-            , <&key_physical_attrs 100  100    980   520   (-1000)   980   520>  // RC(5,6) top outer-right
-            , <&key_physical_attrs 100  200    880   550   (-1000)   980   520>  // RC(5,7) 2u tall right
-            , <&key_physical_attrs 100  200    980   550   (-1000)   980   520>  // RC(5,8) 2u tall rightmost
+            , <&key_physical_attrs 100 100  900   275   0 0 0>
+            , <&key_physical_attrs 100 100  800   250   0 0 0>
+            , <&key_physical_attrs 100 100  700   200   0 0 0>
+            , <&key_physical_attrs 100 100  600   210   0 0 0>
+            , <&key_physical_attrs 100 100  500   230   0 0 0>
+            , <&key_physical_attrs 100 100  400   260   0 0 0>
+
+            // ───────── ROW 3 ─────────
+            , <&key_physical_attrs 100 100    0   375   0 0 0>
+            , <&key_physical_attrs 100 100  100   350   0 0 0>
+            , <&key_physical_attrs 100 100  200   300   0 0 0>
+            , <&key_physical_attrs 100 100  300   310   0 0 0>
+            , <&key_physical_attrs 100 100  400   330   0 0 0>
+            , <&key_physical_attrs 100 100  500   360   0 0 0>
+
+            , <&key_physical_attrs 100 100  900   375   0 0 0>
+            , <&key_physical_attrs 100 100  800   350   0 0 0>
+            , <&key_physical_attrs 100 100  700   300   0 0 0>
+            , <&key_physical_attrs 100 100  600   310   0 0 0>
+            , <&key_physical_attrs 100 100  500   330   0 0 0>
+            , <&key_physical_attrs 100 100  400   360   0 0 0>
+
+            // ───────── ROW 4 (inner 4 keys per side) ─────────
+            , <&key_physical_attrs 100 100  100   450   0 0 0>
+            , <&key_physical_attrs 100 100  200   400   0 0 0>
+            , <&key_physical_attrs 100 100  300   410   0 0 0>
+            , <&key_physical_attrs 100 100  400   430   0 0 0>
+
+            , <&key_physical_attrs 100 100  800   450   0 0 0>
+            , <&key_physical_attrs 100 100  700   400   0 0 0>
+            , <&key_physical_attrs 100 100  600   410   0 0 0>
+            , <&key_physical_attrs 100 100  500   430   0 0 0>
+
+            // ───────── THUMB CLUSTERS ─────────
+            // Left pivot (350,520) | Right pivot (850,520)
+
+            , <&key_physical_attrs 100 100  520 500 1200 350 520>
+            , <&key_physical_attrs 100 100  470 580 1200 350 520>
+            , <&key_physical_attrs 100 100  880 580 (-1200) 850 520>
+            , <&key_physical_attrs 100 100  830 500 (-1200) 850 520>
+
+            , <&key_physical_attrs 100 100  420 660 1200 350 520>
+            , <&key_physical_attrs 100 100  930 660 (-1200) 850 520>
+
+            , <&key_physical_attrs 100 100  570 520 1200 350 520>
+            , <&key_physical_attrs 100 100  520 600 1200 350 520>
+            , <&key_physical_attrs 100 100  470 680 1200 350 520>
+
+            , <&key_physical_attrs 100 100  880 680 (-1200) 850 520>
+            , <&key_physical_attrs 100 100  930 600 (-1200) 850 520>
+            , <&key_physical_attrs 100 100  980 520 (-1200) 850 520>
             ;
     };
 };
